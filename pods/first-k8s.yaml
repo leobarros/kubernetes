@@ -8,6 +8,9 @@ metadata:
 spec:
   containers:
   - image: nginx
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 80
     name: nginx
     resources: {}
 status: {}
