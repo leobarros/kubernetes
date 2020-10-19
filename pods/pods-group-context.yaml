@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pods-group-context
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+  volumes:
+  - name: backup
+    image: alpine
+    command: ["/bin/spleep", "999999"]
+    volumeMounts:
+    - name:  backup
+      mountPath:  /backup/servers
+    securityContext:
+      allowPrivilegeEscalation: false
