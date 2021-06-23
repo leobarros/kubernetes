@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: segundo-pod-declarativo
+spec:
+  containers:
+    - image:  nginx:latest
+      name:  container-pod-1
