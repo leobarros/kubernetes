@@ -13,5 +13,5 @@ spec:
   accessModes:
     - ReadWriteMany
   nfs:
-    server: 192.168.31.174
+    server: 192.168.99.174
     path: "/mnt/nfs/promdata"
