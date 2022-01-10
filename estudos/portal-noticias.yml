@@ -3,8 +3,17 @@ kind: Pod
 metadata:
   name: portal-noticias
   labels:
-    name: portal-noticias
+    app: portal-noticias
 spec:
   containers:
-  - name: portal-noticias
+  - name: portal-noticias-container
     image: aluracursos/portal-noticias:1
+    ports:
+     - containerPort: 80
+    # resources:
+    #   requests:
+    #     memory: "128Mi"
+    #     cpu: "512m"
+    #   limits:
+    #     memory: "256Mi"
+    #     cpu: "512m"
