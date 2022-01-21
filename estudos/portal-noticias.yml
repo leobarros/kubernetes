@@ -17,3 +17,6 @@ spec:
     #   limits:
     #     memory: "256Mi"
     #     cpu: "512m"
+    envFrom:
+    - configMapRef:
+        name: portal-configmap
