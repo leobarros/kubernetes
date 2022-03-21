@@ -1,0 +1,66 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "generic/ubuntu2004"
+
+  config.vm.provider "virtualbox" do |v|
+	v.memory = 2048
+  v.cpus = 2
+  end
+
+  config.vm.define "kube01" do |a|
+	a.vm.network "private_network", ip: "192.168.99.40"
+  a.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install software-properties-common
+    sudo add-apt-repository --yes --update ppa:ansible/ansible
+    sudo apt-get install ansible -y
+    sudo echo "192.168.99.41 kube02 kube02" >> /etc/hosts
+    sudo echo "192.168.99.42 kube03 kube03" >> /etc/hosts
+    # install docker
+    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    sudo apt-get install docker-ce -y
+    sudo usermod -aG docker ${USER}
+    sudo curl -s -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+  SHELL
+  a.vm.hostname = "kube01"
+  a.vm.synced_folder ".", "/home/vagrant/projetos/descomplicando-ansible"
+  end
+
+  config.vm.define "kube02" do |b|
+    b.vm.network "private_network", ip: "192.168.99.41"
+    b.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install software-properties-common
+    # install docker
+    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    sudo apt-get install docker-ce -y
+    sudo usermod -aG docker ${USER}
+    sudo curl -s -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+  SHELL
+    b.vm.hostname = "kube02"
+  end
+  
+  config.vm.define "kube03" do |c|
+    c.vm.network "private_network", ip: "192.168.99.42"
+    c.vm.provision "shell", inline: <<-SHELL
+    sudo apt-get update
+    sudo apt-get install software-properties-common
+    # install docker
+    sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
+    sudo apt-get install docker-ce -y
+    sudo usermod -aG docker ${USER}
+    sudo curl -s -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+  SHELL
+    c.vm.hostname = "kube03"
+  end
+
+end
