@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2022-04-04T18:59:35Z"
+  labels:
+    app: meu-nginx
+  name: meu-nginx
+  namespace: default
+  resourceVersion: "375080"
+  uid: 6e825239-0dab-40c4-b5b5-ba48c65e0b9c
+spec:
+  clusterIP: 10.43.86.152
+  clusterIPs:
+  - 10.43.86.152
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 32555
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: meu-nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer: {}
