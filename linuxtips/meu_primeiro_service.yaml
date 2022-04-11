@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: meu-nginx
-  name: meu-nginx
-  namespace: default
+    app: webserver
+  name: webserver
+  namespace: lsales
 spec:
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
   selector:
-    app: meu-nginx
+    app: webserver
   sessionAffinity: None
-  type: ClusterIP
+  type: NodePort

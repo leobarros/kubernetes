@@ -2,15 +2,15 @@ apiVersion: v1
 kind: Pod
 metadata:
   labels:
-    run: webserver
+    app: webserver
   name: webserver
-  namespace: giropops
+  namespace: lsales
 spec:
   containers:
   - image: nginx
     imagePullPolicy: Always
     ports:
-    - containerPort: 80
+    - containerPort: 80 
     name: webserver
   dnsPolicy: ClusterFirst
   restartPolicy: Always

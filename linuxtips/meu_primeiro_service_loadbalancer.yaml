@@ -5,7 +5,7 @@ metadata:
   labels:
     app: meu-nginx
   name: meu-nginx
-  namespace: default
+  namespace: lsales
   resourceVersion: "375080"
   uid: 6e825239-0dab-40c4-b5b5-ba48c65e0b9c
 spec:
