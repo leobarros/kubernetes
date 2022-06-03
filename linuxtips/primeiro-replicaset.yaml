@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replica-set-primeiro
+  labels:
+    app: webserver
+    tier: lsales
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: lsales
+  template:
+    metadata:
+      labels:
+        tier: lsales
+    spec:
+      containers:
+      - name: nginx-rep
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
