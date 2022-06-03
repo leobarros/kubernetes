@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ms-canary-app-v2
+  labels:
+    app: ms-canary-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ms-canary-app
+  template:
+    metadata:
+      labels:
+        app: ms-canary-app
+    spec:
+      containers:
+      - name: ms-canary-app-v2
+        image: nginx:1.15.0
+        ports:
+        - containerPort: 80

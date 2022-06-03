@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ms-canary-service
+spec:
+  selector:
+    app: ms-canary-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3054
