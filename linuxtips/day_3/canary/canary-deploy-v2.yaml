@@ -5,7 +5,7 @@ metadata:
   labels:
     app: ms-canary-app
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: ms-canary-app
@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: ms-canary-app-v2
-        image: nginx:1.15.0
+        image: nickolback/ms-canary:v2
         ports:
         - containerPort: 80

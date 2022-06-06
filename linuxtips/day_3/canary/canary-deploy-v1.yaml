@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: ms-canary-app-v1
-        image: nginx:1.14.2
+        image: "nickolback/ms-canary:v1"
         ports:
         - containerPort: 80

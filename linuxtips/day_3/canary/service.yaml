@@ -3,6 +3,7 @@ kind: Service
 metadata:
   name: ms-canary-service
 spec:
+  type: NodePort
   selector:
     app: ms-canary-app
   ports:
