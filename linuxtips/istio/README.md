@@ -33,3 +33,5 @@ istioctl install --set profile=demo -y
 ✔ Installation complete
 Making this installation the default for injection and validation.
 ```
+
+Para mais detalhes de como instalar e efetuar um deploy de uma aplicação de exemplo acesse: https://istio.io/latest/docs/setup/getting-started/
